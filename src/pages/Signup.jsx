@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useAuth } from "../context/authContext";
 
 export const Signup = () => {
+    const { signup } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -8,6 +10,10 @@ export const Signup = () => {
     console.log(`email: ${email}`);
     console.log(`password: ${password}`);
     console.log(`confirm password: ${confirmPassword}`);
+
+    function handleSubmit(element) {
+        element.preventDefault();
+    }
 
     return (
         <div className="container">
@@ -34,7 +40,7 @@ export const Signup = () => {
                     onChange={(element) => setConfirmPassword(element.target.value)}
                 />
 
-                <button className="button-block" type="submit">
+                <button onClick={handleSubmit} className="button-block" type="submit">
                     Signup
                 </button>
             </form>

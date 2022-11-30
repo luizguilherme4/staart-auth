@@ -2,23 +2,35 @@ import React, { useState } from "react";
 import { useAuth } from "../context/authContext";
 
 export const Signup = () => {
-    const { signup } = useAuth();
+    const { signUp } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    console.log(`email: ${email}`);
-    console.log(`password: ${password}`);
-    console.log(`confirm password: ${confirmPassword}`);
-
-    function handleSubmit(element) {
+    async function handleSubmit(element) {
         element.preventDefault();
+
+        if (password.length < 6) {
+            alert("Senha deve ter no mínimo 6 caracteres")
+            return;
+        }
+
+        if (password != confirmPassword) {
+            alert("As senhas não conferem")
+            return;
+        }
+
+        try {
+            await signUp(email, password);
+        } catch (error) {
+            alert("Ocorreu um erro ao tentar criar o usuário")
+        }
     }
 
     return (
         <div className="container">
             <h2>Signup</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Email</label>
                 <input
                     type="email"
@@ -40,7 +52,7 @@ export const Signup = () => {
                     onChange={(element) => setConfirmPassword(element.target.value)}
                 />
 
-                <button onClick={handleSubmit} className="button-block" type="submit">
+                <button className="button-block" type="submit">
                     Signup
                 </button>
             </form>

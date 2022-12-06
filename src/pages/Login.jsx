@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 export const Login = () => {
@@ -53,6 +53,18 @@ export const Login = () => {
                     Login
                 </button>
             </form>
+            <div className="center">
+                <div>
+                    <p>
+                        Esqueceu a senha?
+                        <Link to="/forgot-password">Recuperar senha</Link>
+                    </p>
+                    <p>
+                        Não tem uma conta?
+                        <Link to="/signup">Cadastre-se</Link>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 } 

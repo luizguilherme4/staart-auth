@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 export const Signup = () => {
@@ -8,6 +8,7 @@ export const Signup = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     async function handleSubmit(element) {
         element.preventDefault();
@@ -28,6 +29,7 @@ export const Signup = () => {
 
         try {
             await signUp(email, password);
+            navigate("/")
         } catch (error) {
             alert("Ocorreu um erro ao tentar criar o usuário")
         }

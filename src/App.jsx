@@ -21,7 +21,7 @@ function App() {
           } />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<div><h1>Rota não encontrada</h1></div>}></Route>
+          <Route path="*" element={<div className="center"><h1>Rota não encontrada</h1></div>}></Route>
           <Route path="/update-profile" element={
             <ProtectedRoute>
               <UpdateProfile />
